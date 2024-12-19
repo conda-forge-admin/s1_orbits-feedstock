@@ -1,13 +1,14 @@
 {% set name = "s1_orbits" %}
-{% set version = "0.1.1" %}
+{% set version = "0.1.2" %}
+{% set python_min = "3.9" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/s1_orbits-{{ version }}.tar.gz
-  sha256: 0cb460a97cfea5ee39633998bc5d5b21ad293bc7cb3ddab00644e5ecd18a8adb
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/s1_orbits-{{ version }}.tar.gz
+  sha256: 5d33e5ec4a4d9576a5f1124852030ffb597641f896de732599a44aec3a733195
 
 build:
   noarch: python
@@ -16,12 +17,12 @@ build:
 
 requirements:
   host:
-    - python >=3.9
+    - python {{ python_min }}
     - setuptools >=61.0
     - setuptools-scm >=6.2
     - pip
   run:
-    - python >=3.9
+    - python >={{ python_min }}
     - requests
 
 test:
@@ -30,6 +31,7 @@ test:
   commands:
     - pip check
   requires:
+    - python {{ python_min }}
     - pip
 
 about:
